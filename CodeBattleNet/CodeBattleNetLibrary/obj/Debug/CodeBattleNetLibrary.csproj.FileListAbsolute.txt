@@ -1,0 +1,14 @@
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\AIBattleNet\AIBattleLibrary\bin\Debug\CodeBattleNetLibrary.dll
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\AIBattleNet\AIBattleLibrary\bin\Debug\CodeBattleNetLibrary.pdb
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\AIBattleNet\AIBattleLibrary\bin\Debug\SuperSocket.ClientEngine.dll
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\AIBattleNet\AIBattleLibrary\bin\Debug\WebSocket4Net.dll
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\AIBattleNet\AIBattleLibrary\obj\Debug\CodeBattleNetLibrary.csprojResolveAssemblyReference.cache
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\AIBattleNet\AIBattleLibrary\obj\Debug\CodeBattleNetLibrary.dll
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\AIBattleNet\AIBattleLibrary\obj\Debug\CodeBattleNetLibrary.pdb
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\CodeBattleNet\CodeBattleNetLibrary\bin\Debug\CodeBattleNetLibrary.dll
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\CodeBattleNet\CodeBattleNetLibrary\bin\Debug\CodeBattleNetLibrary.pdb
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\CodeBattleNet\CodeBattleNetLibrary\bin\Debug\SuperSocket.ClientEngine.dll
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\CodeBattleNet\CodeBattleNetLibrary\bin\Debug\WebSocket4Net.dll
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\CodeBattleNet\CodeBattleNetLibrary\obj\Debug\CodeBattleNetLibrary.csprojResolveAssemblyReference.cache
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\CodeBattleNet\CodeBattleNetLibrary\obj\Debug\CodeBattleNetLibrary.dll
+c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\CodeBattleNet\CodeBattleNetLibrary\obj\Debug\CodeBattleNetLibrary.pdb

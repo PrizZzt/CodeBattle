@@ -1,0 +1,4 @@
+﻿  CodeBattleCpp.cpp
+c:\users\andrei_avvakumov\documents\visual studio 2015\projects\codebattle\codebattlecpp\codebattlecpp\codebattlecpp.cpp(23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  CodeBattleCpp.vcxproj -> C:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\CodeBattleCpp\Debug\CodeBattleCpp.exe
+  CodeBattleCpp.vcxproj -> C:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\CodeBattleCpp\Debug\CodeBattleCpp.pdb (Full PDB)
