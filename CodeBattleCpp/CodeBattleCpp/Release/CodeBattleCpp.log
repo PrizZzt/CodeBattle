@@ -1,7 +1,0 @@
-﻿  CodeBattleCpp.cpp
-CodeBattleCpp.cpp(23): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating code
-  All 591 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  CodeBattleCpp.vcxproj -> C:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\clients\CodeBattleCpp\Release\CodeBattleCpp.exe
-  CodeBattleCpp.vcxproj -> C:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\clients\CodeBattleCpp\Release\CodeBattleCpp.pdb (Full PDB)

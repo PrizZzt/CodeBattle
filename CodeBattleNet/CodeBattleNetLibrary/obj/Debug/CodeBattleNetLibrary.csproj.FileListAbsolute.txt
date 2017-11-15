@@ -1,7 +1,0 @@
-c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\clients\CodeBattleNet\CodeBattleNetLibrary\bin\Debug\CodeBattleNetLibrary.dll
-c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\clients\CodeBattleNet\CodeBattleNetLibrary\bin\Debug\CodeBattleNetLibrary.pdb
-c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\clients\CodeBattleNet\CodeBattleNetLibrary\bin\Debug\SuperSocket.ClientEngine.dll
-c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\clients\CodeBattleNet\CodeBattleNetLibrary\bin\Debug\WebSocket4Net.dll
-c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\clients\CodeBattleNet\CodeBattleNetLibrary\obj\Debug\CodeBattleNetLibrary.dll
-c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\clients\CodeBattleNet\CodeBattleNetLibrary\obj\Debug\CodeBattleNetLibrary.pdb
-c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\CodeBattle\clients\CodeBattleNet\CodeBattleNetLibrary\obj\Debug\CodeBattleNetLibrary.csprojResolveAssemblyReference.cache
