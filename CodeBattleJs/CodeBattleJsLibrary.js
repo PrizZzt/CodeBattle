@@ -6,32 +6,44 @@
   BombBomberman: '☻',
   DeadBomberman: 'Ѡ',
 
-	OtherBomberman: '♥',
-	OtherBombBomberman: '♠',
-	OtherDeadBomberman: '♣',
+  OtherBomberman: '♥',
+  OtherBombBomberman: '♠',
+  OtherDeadBomberman: '♣',
 
-	BombTimer5: '5',
-	BombTimer4: '4',
-	BombTimer3: '3',
+  BombTimer5: '5',
+  BombTimer4: '4',
+  BombTimer3: '3',
   BombTimer2: '2',
-	BombTimer1: '1',
-	Boom: '҉',
+  BombTimer1: '1',
+  Boom: '҉',
 
-	Wall: '☼',
-	WallDestroyable: '#',
-	DestroyedWall: 'H',
+  Wall: '☼',
+  WallDestroyable: '#',
+  DestroyedWall: 'H',
 
-	MeatChopper: '&',
-	DeadMeatChopper: 'x',
+  MeatChopper: '&',
+  DeadMeatChopper: 'x',
 
-	Space: ' '
+  Space: ' '
+};
+
+var BombAction =
+{
+  None: 0,
+  BeforeTurn: 1,
+  AfterTurn: 2
 };
 
 class GameClient
 {
-  constructor(path, callback)
+  constructor(server, userEmail, userPassword = "")
   {
-    this.socket = new WebSocket(path);
+    this.path = "ws://" + server + "/codenjoy-contest/ws?user=" + userEmail + (userPassword == "" ? "" : "&pwd=" + userPassword)
+  }
+  
+  run(callback)
+  {
+    this.socket = new WebSocket(this.path);
     this.socket.onmessage = function(event)
     {
       var data = event.data.substring(6);
@@ -77,10 +89,26 @@ class GameClient
   set onclose(callback) { this.socket.onclose = callback; }
   set onerror(callback) { this.socket.onerror = callback; }
   
-  up()    { this.socket.send("UP");    }
-  down()  { this.socket.send("DOWN");  }
-  right() { this.socket.send("RIGHT"); }
-  left()  { this.socket.send("LEFT");  }
-  act()   { this.socket.send("ACT");   }
-  blank() { this.socket.send("");      }
+  up(action = BombAction.None)
+  {
+    this.socket.send((action == BombAction.BeforeTurn ? "ACT,": "") + "UP" + (action == BombAction.AfterTurn ? ",ACT": ""));
+  }
+  
+  down(action = BombAction.None)
+  {
+    this.socket.send((action == BombAction.BeforeTurn ? "ACT,": "") + "DOWN" + (action == BombAction.AfterTurn ? ",ACT": ""));
+  }
+  
+  right(action = BombAction.None)
+  {
+    this.socket.send((action == BombAction.BeforeTurn ? "ACT,": "") + "RIGHT" + (action == BombAction.AfterTurn ? ",ACT": ""));
+  }
+  
+  left(action = BombAction.None)
+  {
+    this.socket.send((action == BombAction.BeforeTurn ? "ACT,": "") + "LEFT" + (action == BombAction.AfterTurn ? ",ACT": ""));
+  }
+  
+  act() { this.socket.send("ACT"); }
+  blank() { this.socket.send(""); }  
 }

@@ -25,18 +25,18 @@
       return result;
     };
     
-    var gcb = new GameClient("ws://localhost:8080/codenjoy-contest/ws?user=ab@c.ru",
-      function()
+    var gcb = new GameClient("52.232.32.105:8080", "ab@c.ru", "123")
+    gcb.run(function()
       {
         var done = false;
 
         switch (Math.round(Math.random() * 5 - 0.5))
         {
-        case 0: if (isBlock(gcb.map[gcb.playerY - 1][gcb.playerX]) == false) { gcb.up();    done = true; } break;
-        case 1: if (isBlock(gcb.map[gcb.playerY][gcb.playerX + 1]) == false) { gcb.right(); done = true; } break;
-        case 2: if (isBlock(gcb.map[gcb.playerY + 1][gcb.playerX]) == false) { gcb.down();  done = true; } break;
-        case 3: if (isBlock(gcb.map[gcb.playerY][gcb.playerX - 1]) == false) { gcb.left();  done = true; } break;
-        case 4: gcb.act(); done = true; break;
+        	case 0: if (isBlock(gcb.map[gcb.playerY - 1][gcb.playerX]) == false) { gcb.up(BombAction.BeforeTurn);    done = true; } break;
+        	case 1: if (isBlock(gcb.map[gcb.playerY][gcb.playerX + 1]) == false) { gcb.right(BombAction.BeforeTurn); done = true; } break;
+        	case 2: if (isBlock(gcb.map[gcb.playerY + 1][gcb.playerX]) == false) { gcb.down(BombAction.BeforeTurn);  done = true; } break;
+       		case 3: if (isBlock(gcb.map[gcb.playerY][gcb.playerX - 1]) == false) { gcb.left(BombAction.BeforeTurn);  done = true; } break;
+        	case 4: gcb.act(); done = true; break;
         }
         if (done == false)
           gcb.blank();

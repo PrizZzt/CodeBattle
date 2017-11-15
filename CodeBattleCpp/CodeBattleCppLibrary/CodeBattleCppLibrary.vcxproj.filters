@@ -24,6 +24,9 @@
     <ClInclude Include="easywsclient\easywsclient.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BombAction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameClientBomberman.cpp">

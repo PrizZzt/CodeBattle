@@ -21,22 +21,22 @@ bool is_block(BombermanBlocks _block)
 void main()
 {
 	srand(time(0));
-	GameClientBomberman gcb;
-	gcb.Run("ws://localhost:8080/codenjoy-contest/ws?user=ab@c.ru", [&]()
+	GameClientBomberman *gcb = new GameClientBomberman("52.232.32.105:8080", "ab@c.ru", "123");
+	gcb->Run([&]()
 	{
-		BombermanBlocks **map = gcb.get_map();
+		BombermanBlocks **map = gcb->get_map();
 		bool done = false;
 
-		switch (rand()%5)
+		switch (rand() % 5)
 		{
-		case 0: if (is_block(map[gcb.get_player_y() - 1][gcb.get_player_x()]) == false) { gcb.Up();    done = true; } break;
-		case 1: if (is_block(map[gcb.get_player_y()][gcb.get_player_x() + 1]) == false) { gcb.Right(); done = true; } break;
-		case 2: if (is_block(map[gcb.get_player_y() + 1][gcb.get_player_x()]) == false) { gcb.Down();  done = true; } break;
-		case 3: if (is_block(map[gcb.get_player_y()][gcb.get_player_x() - 1]) == false) { gcb.Left();  done = true; } break;
-		case 4: gcb.Act(); done = true; break;
+		case 0: if (is_block(map[gcb->get_player_y() - 1][gcb->get_player_x()]) == false) { gcb->Up(BombAction::BeforeTurn);    done = true; } break;
+		case 1: if (is_block(map[gcb->get_player_y()][gcb->get_player_x() + 1]) == false) { gcb->Right(BombAction::BeforeTurn); done = true; } break;
+		case 2: if (is_block(map[gcb->get_player_y() + 1][gcb->get_player_x()]) == false) { gcb->Down(BombAction::BeforeTurn);  done = true; } break;
+		case 3: if (is_block(map[gcb->get_player_y()][gcb->get_player_x() - 1]) == false) { gcb->Left(BombAction::BeforeTurn);  done = true; } break;
+		case 4: gcb->Act(); done = true; break;
 		}
 		if (done == false)
-			gcb.Blank();
+			gcb->Blank();
 	});
 
 	getchar();

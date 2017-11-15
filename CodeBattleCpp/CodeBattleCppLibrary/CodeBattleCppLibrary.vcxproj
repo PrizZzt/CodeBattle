@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BombAction.h" />
     <ClInclude Include="BombermanBlocks.h" />
     <ClInclude Include="easywsclient\easywsclient.hpp" />
     <ClInclude Include="GameClientBomberman.h" />

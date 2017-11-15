@@ -1,9 +1,0 @@
-c:\users\andrei_avvakumov\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
-c:\users\andrei_avvakumov\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
-c:\users\andrei_avvakumov\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
-c:\users\andrei_avvakumov\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
-c:\users\andrei_avvakumov\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
-c:\users\andrei_avvakumov\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
-c:\users\andrei_avvakumov\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\SuperSocket.ClientEngine.dll
-c:\users\andrei_avvakumov\documents\visual studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\WebSocket4Net.dll
-c:\Users\Andrei_Avvakumov\Documents\Visual Studio 2015\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\AIBattle.exe.config

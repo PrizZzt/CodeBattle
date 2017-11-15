@@ -13,6 +13,7 @@
 #include <memory>
 
 #include "BombermanBlocks.h"
+#include "BombAction.h"
 
 class GameClientBomberman
 {
@@ -20,21 +21,33 @@ class GameClientBomberman
 	uint32_t map_size, player_x, player_y;
 
 	easywsclient::WebSocket *web_socket;
-	std::function<void()> message_handler;
+	std::string path;
 
 	bool is_running;
 	std::thread *work_thread;
-	void update_func(std::string _path);
+	void update_func(std::function<void()> _message_handler);
 
 public:
-	GameClientBomberman();
+	GameClientBomberman(std::string _server, std::string _userEmail, std::string _userPassword = "");
 	~GameClientBomberman();
 
-	void Run(std::string _path, std::function<void()> _message_handler);
-	void Up() { web_socket->send("UP"); }
-	void Down() { web_socket->send("DOWN"); }
-	void Right() { web_socket->send("RIGHT"); }
-	void Left() { web_socket->send("LEFT"); }
+	void Run(std::function<void()> _message_handler);
+	void Up(BombAction _action = BombAction::None)
+	{
+		web_socket->send(std::string(_action == BombAction::BeforeTurn ? "ACT," : "") + "UP" + std::string(_action == BombAction::AfterTurn ? ",ACT" : ""));
+	}
+	void Down(BombAction _action = BombAction::None)
+	{
+		web_socket->send(std::string(_action == BombAction::BeforeTurn ? "ACT," : "") + "DOWN" + std::string(_action == BombAction::AfterTurn ? ",ACT" : ""));
+	}
+	void Right(BombAction _action = BombAction::None)
+	{
+		web_socket->send(std::string(_action == BombAction::BeforeTurn ? "ACT," : "") + "RIGHT" + std::string(_action == BombAction::AfterTurn ? ",ACT" : ""));
+	}
+	void Left(BombAction _action = BombAction::None)
+	{
+		web_socket->send(std::string(_action == BombAction::BeforeTurn ? "ACT," : "") + "LEFT" + std::string(_action == BombAction::AfterTurn ? ",ACT" : ""));
+	}
 	void Act() { web_socket->send("ACT"); }
 	void Blank() { web_socket->send(""); }
 

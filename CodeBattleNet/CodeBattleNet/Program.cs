@@ -7,39 +7,39 @@ namespace CodeBattleNet
 	{
 		private static void Main()
 		{
-			Random r = new Random();
-			GameClientBomberman gcb = new GameClientBomberman("ws://localhost:8080/codenjoy-contest/ws?user=ab@c.ru");
-			gcb.OnUpdate += () =>
+			var r = new Random();
+			var gcb = new GameClientBomberman("52.232.32.105:8080", "ab@c.ru", "123");
+			gcb.Run(() =>
 			{
-				bool done = false;
+				var done = false;
 
 				switch (r.Next(5))
 				{
 					case 0:
 						if (IsBlock(gcb.Map[gcb.PlayerX, gcb.PlayerY - 1]) == false)
 						{
-							gcb.Up();
+							gcb.Up(BombAction.BeforeTurn);
 							done = true;
 						}
 						break;
 					case 1:
 						if (IsBlock(gcb.Map[gcb.PlayerX + 1, gcb.PlayerY]) == false)
 						{
-							gcb.Right();
+							gcb.Right(BombAction.BeforeTurn);
 							done = true;
 						}
 						break;
 					case 2:
 						if (IsBlock(gcb.Map[gcb.PlayerX, gcb.PlayerY + 1]) == false)
 						{
-							gcb.Down();
+							gcb.Down(BombAction.BeforeTurn);
 							done = true;
 						}
 						break;
 					case 3:
 						if (IsBlock(gcb.Map[gcb.PlayerX - 1, gcb.PlayerY]) == false)
 						{
-							gcb.Left();
+							gcb.Left(BombAction.BeforeTurn);
 							done = true;
 						}
 						break;
@@ -50,12 +50,12 @@ namespace CodeBattleNet
 				}
 				if (done == false)
 					gcb.Blank();
-			};
+			});
 
 			Console.ReadKey();
 		}
 
-		static bool IsBlock(BombermanBlocks block) =>
+		private static bool IsBlock(BombermanBlocks block) =>
 			block == BombermanBlocks.Wall ||
 			block == BombermanBlocks.WallDestroyable ||
 			block == BombermanBlocks.MeatChopper ||

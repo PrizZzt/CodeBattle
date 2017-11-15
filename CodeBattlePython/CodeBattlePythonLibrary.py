@@ -30,11 +30,19 @@ class BombermanBlocks(Enum):
     DeadMeatChopper = u'x',
 
     Space = u' '
+    
+class BombAction(Enum):
+		Turn = 0,
+		BeforeTurn = 1,
+		AfterTurn = 2
 
 class GameClient:
-    def __init__(self, path, on_turn = None):
-        self.on_turn = on_turn
+    def __init__(self, server, userEmail, userPassword = None):
+        path = "ws://" + server + "/codenjoy-contest/ws?user=" + userEmail + (("&pwd=" + userPassword) if userPassword != None else "")
         self.socket = websocket.WebSocketApp(path, on_message = self.on_message, on_error = self.on_error, on_close = self.on_close)
+    
+    def run(self, on_turn = None):
+        self.on_turn = on_turn
         self.socket.run_forever()
 
     def on_message(self, ws, message):
@@ -61,17 +69,17 @@ class GameClient:
     def on_close(self, ws):
         print("### closed ###")
 
-    def up(self):
-        self.socket.send("UP")
+    def up(self, action = BombAction.Turn):
+        self.socket.send("{}UP{}".format("ACT," if action == BombAction.BeforeTurn else "",",ACT" if action == BombAction.AfterTurn else ""))
         
-    def down(self):
-        self.socket.send("DOWN")
+    def down(self, action = BombAction.Turn):
+        self.socket.send("{}DOWN{}".format("ACT," if action == BombAction.BeforeTurn else "",",ACT" if action == BombAction.AfterTurn else ""))
         
-    def right(self):
-        self.socket.send("RIGHT")
+    def right(self, action = BombAction.Turn):
+        self.socket.send("{}RIGHT{}".format("ACT," if action == BombAction.BeforeTurn else "",",ACT" if action == BombAction.AfterTurn else ""))
         
-    def left(self):
-        self.socket.send("LEFT")
+    def left(self, action = BombAction.Turn):
+        self.socket.send("{}LEFT{}".format("ACT," if action == BombAction.BeforeTurn else "",",ACT" if action == BombAction.AfterTurn else ""))
         
     def act(self):
         self.socket.send("ACT")

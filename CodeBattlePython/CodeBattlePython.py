@@ -1,5 +1,6 @@
 from CodeBattlePythonLibrary import GameClient
 from CodeBattlePythonLibrary import BombermanBlocks
+from CodeBattlePythonLibrary import BombAction
 import math
 import random
 
@@ -22,19 +23,19 @@ def turn(gcb):
         
     if val == 0:
         if isBlock(gcb.map[gcb.playerY - 1][gcb.playerX]) == False:
-            gcb.up()
+            gcb.up(BombAction.BeforeTurn)
             done = True
     if val == 1:
         if isBlock(gcb.map[gcb.playerY][gcb.playerX + 1]) == False:
-            gcb.right()
+            gcb.right(BombAction.BeforeTurn)
             done = True
     if val == 2:
         if isBlock(gcb.map[gcb.playerY + 1][gcb.playerX]) == False:
-            gcb.down()
+            gcb.down(BombAction.BeforeTurn)
             done = True
     if val == 3:
         if isBlock(gcb.map[gcb.playerY][gcb.playerX - 1]) == False:
-            gcb.left()
+            gcb.left(BombAction.BeforeTurn)
             done = True
     if val == 4:
         gcb.act()
@@ -43,4 +44,5 @@ def turn(gcb):
         gcb.blank();
 
 random.seed()
-GameClient("ws://localhost:8080/codenjoy-contest/ws?user=ab@c.ru", turn)
+gcb = GameClient("52.232.32.105:8080", "ab@c.ru", "123")
+gcb.run(turn)
