@@ -1,6 +1,6 @@
 ﻿namespace CodeBattleNetLibrary
 {
-	public enum BombAction
+	public enum ActionTime
 	{
 		None,
 		BeforeTurn,
