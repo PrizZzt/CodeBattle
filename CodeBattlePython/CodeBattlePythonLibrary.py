@@ -4,34 +4,49 @@ import time
 import math
 from enum import Enum
 
-class BombermanBlocks(Enum):
-    Unknown = 0,
+class Blocks(Enum):
+    Space = ' '
 
-    Bomberman = u'☺',
-    BombBomberman = u'☻',
-    DeadBomberman = u'Ѡ',
+    Brick = '#'
+    PitFill1 = '1'
+    PitFill2 = '2'
+    PitFill3 = '3'
+    PitFill4 = '4'
+    UndestroyableWall = '☼'
 
-    OtherBomberman = u'♥',
-    OtherBombBomberman = u'♠',
-    OtherDeadBomberman = u'♣',
+    DrillPit = '*'
 
-    BombTimer5 = u'5',
-    BombTimer4 = u'4',
-    BombTimer3 = u'3',
-    BombTimer2 = u'2',
-    BombTimer1 = u'1',
-    Boom = u'҉',
+    EnemyLadder = 'Q'
+    EnemyLeft = '«'
+    EnemyRight = '»'
+    EnemyPipeLeft = '<'
+    EnemyPipeRight = '>'
+    EnemyPit = 'X'
 
-    Wall = u'☼',
-    WallDestroyable = u'#',
-    DestroyedWall = u'H',
+    Gold = '$'
 
-    MeatChopper = u'&',
-    DeadMeatChopper = u'x',
+    HeroDie = 'Ѡ'
+    HeroDrillLeft = 'Я'
+    HeroDrillRight = 'R'
+    HeroLadder = 'Y'
+    HeroLeft = '◄'
+    HeroRight = '►'
+    HeroFallLeft = ']'
+    HeroFallRight = '['
+    HeroPipeLeft = '{'
+    HeroPipeRight = '}'
 
-    Space = u' '
+    OtherHeroDie = 'Z'
+    OtherHeroLeft = ')'
+    OtherHeroRight = '('
+    OtherHeroLadder = 'U'
+    OtherHeroPipeLeft = 'Э'
+    OtherHeroPipeRight = 'Є'
+
+    Ladder = 'H'
+    Pipe = '~'
     
-class BombAction(Enum):
+class ActionTime(Enum):
 		Turn = 0,
 		BeforeTurn = 1,
 		AfterTurn = 2
@@ -52,11 +67,11 @@ class GameClient:
         c = 6
         for j in range(self.mapSize):
             for i in range(self.mapSize):
-                self.map[j][i] = BombermanBlocks.Unknown
-                for k in BombermanBlocks:
+                self.map[j][i] = Blocks.Space
+                for k in Blocks:
                     if message[c] == k.value[0]:
                         self.map[j][i] = k
-                        if k == BombermanBlocks.Bomberman or k == BombermanBlocks.BombBomberman or k == BombermanBlocks.DeadBomberman:
+                        if k in [Blocks.HeroDie, Blocks.HeroDrillLeft, Blocks.HeroDrillRight, Blocks.HeroLadder, Blocks.HeroLeft, Blocks.HeroRight, Blocks.HeroFallLeft, Blocks.HeroFallRight, Blocks.HeroPipeLeft, Blocks.HeroPipeRight]:
                             self.playerX = i
                             self.playerY = j
                 c = c + 1
@@ -69,17 +84,17 @@ class GameClient:
     def on_close(self, ws):
         print("### closed ###")
 
-    def up(self, action = BombAction.Turn):
-        self.socket.send("{}UP{}".format("ACT," if action == BombAction.BeforeTurn else "",",ACT" if action == BombAction.AfterTurn else ""))
+    def up(self, action = ActionTime.Turn):
+        self.socket.send("{}UP{}".format("ACT," if action == ActionTime.BeforeTurn else "",",ACT" if action == ActionTime.AfterTurn else ""))
         
-    def down(self, action = BombAction.Turn):
-        self.socket.send("{}DOWN{}".format("ACT," if action == BombAction.BeforeTurn else "",",ACT" if action == BombAction.AfterTurn else ""))
+    def down(self, action = ActionTime.Turn):
+        self.socket.send("{}DOWN{}".format("ACT," if action == ActionTime.BeforeTurn else "",",ACT" if action == ActionTime.AfterTurn else ""))
         
-    def right(self, action = BombAction.Turn):
-        self.socket.send("{}RIGHT{}".format("ACT," if action == BombAction.BeforeTurn else "",",ACT" if action == BombAction.AfterTurn else ""))
+    def right(self, action = ActionTime.Turn):
+        self.socket.send("{}RIGHT{}".format("ACT," if action == ActionTime.BeforeTurn else "",",ACT" if action == ActionTime.AfterTurn else ""))
         
-    def left(self, action = BombAction.Turn):
-        self.socket.send("{}LEFT{}".format("ACT," if action == BombAction.BeforeTurn else "",",ACT" if action == BombAction.AfterTurn else ""))
+    def left(self, action = ActionTime.Turn):
+        self.socket.send("{}LEFT{}".format("ACT," if action == ActionTime.BeforeTurn else "",",ACT" if action == ActionTime.AfterTurn else ""))
         
     def act(self):
         self.socket.send("ACT")
