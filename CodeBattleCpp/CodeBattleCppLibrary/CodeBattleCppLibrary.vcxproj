@@ -19,14 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BombAction.h" />
-    <ClInclude Include="BombermanBlocks.h" />
+    <ClInclude Include="action_time.h" />
+    <ClInclude Include="blocks.h" />
     <ClInclude Include="easywsclient\easywsclient.hpp" />
-    <ClInclude Include="GameClientBomberman.h" />
+    <ClInclude Include="game_client.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="easywsclient\easywsclient.cpp" />
-    <ClCompile Include="GameClientBomberman.cpp" />
+    <ClCompile Include="game_client.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8F09F71F-E153-4C37-B12E-692A4CA8FE7A}</ProjectGuid>

@@ -15,24 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BombermanBlocks.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameClientBomberman.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="easywsclient\easywsclient.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BombAction.h">
+    <ClInclude Include="Blocks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="game_client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="action_time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameClientBomberman.cpp">
+    <ClCompile Include="easywsclient\easywsclient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="easywsclient\easywsclient.cpp">
+    <ClCompile Include="game_client.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

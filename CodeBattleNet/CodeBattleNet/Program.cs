@@ -8,48 +8,48 @@ namespace CodeBattleNet
 		private static void Main()
 		{
 			var r = new Random();
-			var gcb = new GameClient("localhost:8080", "a@b.ru", "123");
-			gcb.Run(() =>
+			var gc = new GameClient("localhost:8080", "a@b.ru", "123");
+			gc.Run(() =>
 			{
 				var done = false;
 
 				switch (r.Next(5))
 				{
 					case 0:
-						if (IsBlock(gcb.Map[gcb.PlayerX, gcb.PlayerY - 1]) == false)
+						if (IsBlock(gc.Map[gc.PlayerX, gc.PlayerY - 1]) == false)
 						{
-							gcb.Up();
+							gc.Up();
 							done = true;
 						}
 						break;
 					case 1:
-						if (IsBlock(gcb.Map[gcb.PlayerX + 1, gcb.PlayerY]) == false)
+						if (IsBlock(gc.Map[gc.PlayerX + 1, gc.PlayerY]) == false)
 						{
-							gcb.Right();
+							gc.Right();
 							done = true;
 						}
 						break;
 					case 2:
-						if (IsBlock(gcb.Map[gcb.PlayerX, gcb.PlayerY + 1]) == false)
+						if (IsBlock(gc.Map[gc.PlayerX, gc.PlayerY + 1]) == false)
 						{
-							gcb.Down();
+							gc.Down();
 							done = true;
 						}
 						break;
 					case 3:
-						if (IsBlock(gcb.Map[gcb.PlayerX - 1, gcb.PlayerY]) == false)
+						if (IsBlock(gc.Map[gc.PlayerX - 1, gc.PlayerY]) == false)
 						{
-							gcb.Left();
+							gc.Left();
 							done = true;
 						}
 						break;
 					case 4:
-						gcb.Act();
+						gc.Act();
 						done = true;
 						break;
 				}
 				if (done == false)
-					gcb.Blank();
+					gc.Blank();
 			});
 
 			Console.ReadKey();

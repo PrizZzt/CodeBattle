@@ -1,8 +1,8 @@
-#include "GameClientBomberman.h"
+#include "game_client.h"
 
 #include <iostream>
 
-GameClientBomberman::GameClientBomberman(std::string _server, std::string _userEmail, std::string _userPassword)
+game_client::game_client(std::string _server, std::string _userEmail, std::string _userPassword)
 {
 	map = nullptr;
 	map_size = 0;
@@ -12,19 +12,19 @@ GameClientBomberman::GameClientBomberman(std::string _server, std::string _userE
 	is_running = false;
 }
 
-GameClientBomberman::~GameClientBomberman()
+game_client::~game_client()
 {
 	is_running = false;
 	work_thread->join();
 }
 
-void GameClientBomberman::Run(std::function<void()> _message_handler)
+void game_client::Run(std::function<void()> _message_handler)
 {
 	is_running = true;
-	work_thread = new std::thread(&GameClientBomberman::update_func, this, _message_handler);
+	work_thread = new std::thread(&game_client::update_func, this, _message_handler);
 }
 
-void GameClientBomberman::update_func(std::function<void()> _message_handler)
+void game_client::update_func(std::function<void()> _message_handler)
 {
 #ifdef _WIN32
 	WSADATA wsaData;
@@ -55,13 +55,13 @@ void GameClientBomberman::update_func(std::function<void()> _message_handler)
 				}
 				map_size = size;
 
-				map = new BombermanBlocks*[map_size];
+				map = new blocks*[map_size];
 				for (uint32_t j = 0; j < map_size; j++)
 				{
-					map[j] = new BombermanBlocks[map_size];
+					map[j] = new blocks[map_size];
 					for (uint32_t i = 0; i < map_size; i++)
 					{
-						map[j][i] = BombermanBlocks::Unknown;
+						map[j][i] = blocks::NONE;
 					}
 				}
 			}
@@ -71,10 +71,21 @@ void GameClientBomberman::update_func(std::function<void()> _message_handler)
 			{
 				for (uint32_t i = 0; i < map_size; i++)
 				{
-					map[j][i] = (BombermanBlocks)wmessage[chr];
+					map[j][i] = (blocks)wmessage[chr];
 					chr++;
 
-					if (map[j][i] == BombermanBlocks::Bomberman || map[j][i] == BombermanBlocks::BombBomberman || map[j][i] == BombermanBlocks::DeadBomberman)
+					if (
+						map[j][i] == blocks::HERO_DIE ||
+						map[j][i] == blocks::HERO_DRILL_LEFT ||
+						map[j][i] == blocks::HERO_DRILL_RIGHT ||
+						map[j][i] == blocks::HERO_LADDER ||
+						map[j][i] == blocks::HERO_LEFT ||
+						map[j][i] == blocks::HERO_RIGHT ||
+						map[j][i] == blocks::HERO_FALL_LEFT ||
+						map[j][i] == blocks::HERO_FALL_RIGHT ||
+						map[j][i] == blocks::HERO_PIPE_LEFT ||
+						map[j][i] == blocks::HERO_PIPE_RIGHT
+						)
 					{
 						player_x = i;
 						player_y = j;
