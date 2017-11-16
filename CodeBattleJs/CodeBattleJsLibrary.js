@@ -1,33 +1,48 @@
-﻿var BombermanBlocks =
+﻿var Blocks =
 {
-  Unknown: 0,
+  None: ' ',
 
-  Bomberman: '☺',
-  BombBomberman: '☻',
-  DeadBomberman: 'Ѡ',
+  Brick: '#',
+  PitFill1: '1',
+  PitFill2: '2',
+  PitFill3: '3',
+  PitFill4: '4',
+  UndestroyableWall: '☼',
 
-  OtherBomberman: '♥',
-  OtherBombBomberman: '♠',
-  OtherDeadBomberman: '♣',
+  DrillPit: '*',
 
-  BombTimer5: '5',
-  BombTimer4: '4',
-  BombTimer3: '3',
-  BombTimer2: '2',
-  BombTimer1: '1',
-  Boom: '҉',
+  EnemyLadder: 'Q',
+  EnemyLeft: '«',
+  EnemyRight: '»',
+  EnemyPipeLeft: '<',
+  EnemyPipeRight: '>',
+  EnemyPit: 'X',
 
-  Wall: '☼',
-  WallDestroyable: '#',
-  DestroyedWall: 'H',
+  Gold: '$',
 
-  MeatChopper: '&',
-  DeadMeatChopper: 'x',
+  HeroDie: 'Ѡ',
+  HeroDrillLeft: 'Я',
+  HeroDrillRight: 'R',
+  HeroLadder: 'Y',
+  HeroLeft: '◄',
+  HeroRight: '►',
+  HeroFallLeft: ']',
+  HeroFallRight: '[',
+  HeroPipeLeft: '{',
+  HeroPipeRight: '}',
 
-  Space: ' '
+  OtherHeroDie: 'Z',
+  OtherHeroLeft: ')',
+  OtherHeroRight: '(',
+  OtherHeroLadder: 'U',
+  OtherHeroPipeLeft: 'Э',
+  OtherHeroPipeRight: 'Є',
+
+  Ladder: 'H',
+  Pipe: '~'
 };
 
-var BombAction =
+var ActionTime =
 {
   None: 0,
   BeforeTurn: 1,
@@ -56,15 +71,22 @@ class GameClient
         this.map[j] = [];
         for(var i = 0; i < this.size; i++)
         {
-          for(var key in BombermanBlocks)
+          for(var key in Blocks)
           {
-            if(data[currentChar] == BombermanBlocks[key])
+            if(data[currentChar] == Blocks[key])
             {
-              this.map[j][i] = BombermanBlocks[key];
+              this.map[j][i] = Blocks[key];
               if(
-                this.map[j][i] == BombermanBlocks.Bomberman ||
-                this.map[j][i] == BombermanBlocks.BombBomberman ||
-                this.map[j][i] == BombermanBlocks.DeadBomberman
+                this.map[j][i] == Blocks.HeroDie ||
+                this.map[j][i] == Blocks.HeroDrillLeft ||
+                this.map[j][i] == Blocks.HeroDrillRight ||
+                this.map[j][i] == Blocks.HeroLadder ||
+                this.map[j][i] == Blocks.HeroLeft ||
+                this.map[j][i] == Blocks.HeroRight ||
+                this.map[j][i] == Blocks.HeroFallLeft ||
+                this.map[j][i] == Blocks.HeroFallRight ||
+                this.map[j][i] == Blocks.HeroPipeLeft ||
+                this.map[j][i] == Blocks.HeroPipeRight
                 )
               {
                 this.playerX = i;
@@ -89,24 +111,24 @@ class GameClient
   set onclose(callback) { this.socket.onclose = callback; }
   set onerror(callback) { this.socket.onerror = callback; }
   
-  up(action = BombAction.None)
+  up(action = ActionTime.None)
   {
-    this.socket.send((action == BombAction.BeforeTurn ? "ACT,": "") + "UP" + (action == BombAction.AfterTurn ? ",ACT": ""));
+    this.socket.send((action == ActionTime.BeforeTurn ? "ACT,": "") + "UP" + (action == ActionTime.AfterTurn ? ",ACT": ""));
   }
   
-  down(action = BombAction.None)
+  down(action = ActionTime.None)
   {
-    this.socket.send((action == BombAction.BeforeTurn ? "ACT,": "") + "DOWN" + (action == BombAction.AfterTurn ? ",ACT": ""));
+    this.socket.send((action == ActionTime.BeforeTurn ? "ACT,": "") + "DOWN" + (action == ActionTime.AfterTurn ? ",ACT": ""));
   }
   
-  right(action = BombAction.None)
+  right(action = ActionTime.None)
   {
-    this.socket.send((action == BombAction.BeforeTurn ? "ACT,": "") + "RIGHT" + (action == BombAction.AfterTurn ? ",ACT": ""));
+    this.socket.send((action == ActionTime.BeforeTurn ? "ACT,": "") + "RIGHT" + (action == ActionTime.AfterTurn ? ",ACT": ""));
   }
   
-  left(action = BombAction.None)
+  left(action = ActionTime.None)
   {
-    this.socket.send((action == BombAction.BeforeTurn ? "ACT,": "") + "LEFT" + (action == BombAction.AfterTurn ? ",ACT": ""));
+    this.socket.send((action == ActionTime.BeforeTurn ? "ACT,": "") + "LEFT" + (action == ActionTime.AfterTurn ? ",ACT": ""));
   }
   
   act() { this.socket.send("ACT"); }

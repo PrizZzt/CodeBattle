@@ -12,43 +12,41 @@
     {
       var result = false;
       result =
-        block == BombermanBlocks.Wall ||
-        block == BombermanBlocks.WallDestroyable ||
-        block == BombermanBlocks.MeatChopper ||
-        block == BombermanBlocks.BombTimer1 ||
-        block == BombermanBlocks.BombTimer2 ||
-        block == BombermanBlocks.BombTimer3 ||
-        block == BombermanBlocks.BombTimer4 ||
-        block == BombermanBlocks.BombTimer5 ||
-        block == BombermanBlocks.OtherBomberman ||
-        block == BombermanBlocks.OtherBombBomberman;
+        block != Blocks.Gold &&
+        block != Blocks.None &&
+        block != Blocks.Ladder &&
+        block != Blocks.Pipe &&
+        block != Blocks.PitFill1 &&
+        block != Blocks.PitFill2 &&
+        block != Blocks.PitFill3 &&
+        block != Blocks.PitFill4 &&
+        block != Blocks.DrillPit;
       return result;
     };
     
-    var gcb = new GameClient("52.232.32.105:8080", "ab@c.ru", "123")
-    gcb.run(function()
-      {
-        var done = false;
+    var gc = new GameClient("localhost:8080", "a@b.ru", "123")
+    gc.run(function()
+    {
+      var done = false;
 
-        switch (Math.round(Math.random() * 5 - 0.5))
-        {
-        	case 0: if (isBlock(gcb.map[gcb.playerY - 1][gcb.playerX]) == false) { gcb.up(BombAction.BeforeTurn);    done = true; } break;
-        	case 1: if (isBlock(gcb.map[gcb.playerY][gcb.playerX + 1]) == false) { gcb.right(BombAction.BeforeTurn); done = true; } break;
-        	case 2: if (isBlock(gcb.map[gcb.playerY + 1][gcb.playerX]) == false) { gcb.down(BombAction.BeforeTurn);  done = true; } break;
-       		case 3: if (isBlock(gcb.map[gcb.playerY][gcb.playerX - 1]) == false) { gcb.left(BombAction.BeforeTurn);  done = true; } break;
-        	case 4: gcb.act(); done = true; break;
-        }
-        if (done == false)
-          gcb.blank();
+      switch (Math.round(Math.random() * 5 - 0.5))
+      {
+        case 0: if (isBlock(gc.map[gc.playerY - 1][gc.playerX]) == false) { gc.up();    done = true; } break;
+        case 1: if (isBlock(gc.map[gc.playerY][gc.playerX + 1]) == false) { gc.right(); done = true; } break;
+        case 2: if (isBlock(gc.map[gc.playerY + 1][gc.playerX]) == false) { gc.down();  done = true; } break;
+       	case 3: if (isBlock(gc.map[gc.playerY][gc.playerX - 1]) == false) { gc.left();  done = true; } break;
+        case 4: gc.act(); done = true; break;
       }
-    );
+      if (done == false)
+        gc.blank();
+    });
     
-    gcb.onopen = function()
+    gc.onopen = function()
     {
       text.value += "Соединение установлено.\n";
     };
 
-    gcb.onclose = function(event)
+    gc.onclose = function(event)
     {
       if (event.wasClean)
         text.value += "Соединение закрыто чисто";
@@ -58,7 +56,7 @@
       text.value += " - Код: " + event.code + ", Причина: " + event.reason + "\n";
     };
 
-    gcb.onerror = function(error)
+    gc.onerror = function(error)
     {
       text.value += "Ошибка: " + error.message + "\n";
     };
